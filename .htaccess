@@ -1,0 +1,24 @@
+<IfModule mod_mime.c>
+  AddEncoding gzip .gz
+  AddType application/wasm .wasm.gz
+  AddType application/javascript .js.gz
+  AddType application/octet-stream .data.gz
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.gz$">
+    Header set Content-Encoding gzip
+  </FilesMatch>
+</IfModule>
+
+<FilesMatch "\.wasm.gz$">
+  Header set Content-Type application/wasm
+</FilesMatch>
+
+<FilesMatch "\.js.gz$">
+  Header set Content-Type application/javascript
+</FilesMatch>
+
+<FilesMatch "\.data.gz$">
+  Header set Content-Type application/octet-stream
+</FilesMatch>
